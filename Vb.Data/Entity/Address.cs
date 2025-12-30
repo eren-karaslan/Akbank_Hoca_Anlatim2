@@ -1,0 +1,40 @@
+﻿
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Vb.Data.Entity;
+
+public class Address
+{
+    public int CustomerId { get; set; }
+    public virtual Customer Customer { get; set; }
+
+    public string Address1 { get; set; }
+    public string Address2 { get; set; }
+    public string Country { get; set; }
+
+    public string City { get; set; }
+    public string County { get; set; }
+    public string PostalCode { get; set; }
+}
+
+public class AddressConfiguration : IEntityTypeConfiguration<Address>
+{
+    public void Configure(EntityTypeBuilder<Address> builder)
+    {
+        builder.Property(x => x.CustomerId).IsRequired(true);
+        builder.Property(x => x.Address1).IsRequired(true).HasMaxLength(100);
+        builder.Property(x => x.Address2).IsRequired(false).HasMaxLength(100);
+
+        builder.Property(x => x.Country).IsRequired(true).HasMaxLength(100);
+        builder.Property(x => x.City).IsRequired(true).HasMaxLength(100);
+        builder.Property(x => x.County).IsRequired(false).HasMaxLength(100);
+        builder.Property(x => x.PostalCode).IsRequired(false).HasMaxLength(10);
+
+        builder.HasIndex(x => x.CustomerId);
+    }
+}
