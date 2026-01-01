@@ -19,4 +19,11 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Vb.Base\Vb.Base.csproj" />
+    <ProjectReference Include="..\Vb.Business\Vb.Business.csproj" />
+    <ProjectReference Include="..\Vb.Schema\Vb.Schema.csproj" />
+    <ProjectReference Include="..\VbApi\VbApi.csproj" />
+  </ItemGroup>
+
 </Project>

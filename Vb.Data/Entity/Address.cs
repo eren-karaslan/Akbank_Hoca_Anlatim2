@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vb.Data.Entity;
+using Vb.Base.Entity;
 
-public class Address
+public class Address : BaseEntity
 {
     public int CustomerId { get; set; }
     public virtual Customer Customer { get; set; }
@@ -26,6 +27,12 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
 {
     public void Configure(EntityTypeBuilder<Address> builder)
     {
+        builder.Property(x => x.InsertDate).IsRequired(true);
+        builder.Property(x => x.InsertUserId).IsRequired(true);
+        builder.Property(x => x.UpdateDate).IsRequired(false);
+        builder.Property(x => x.UpdateUserId).IsRequired(false);
+        builder.Property(x => x.IsActive).IsRequired(true).HasDefaultValue(true);
+
         builder.Property(x => x.CustomerId).IsRequired(true);
         builder.Property(x => x.Address1).IsRequired(true).HasMaxLength(100);
         builder.Property(x => x.Address2).IsRequired(false).HasMaxLength(100);
