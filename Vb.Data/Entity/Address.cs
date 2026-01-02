@@ -1,14 +1,12 @@
 ﻿
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vb.Data.Entity;
 using Vb.Base.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace Vb.Data.Entity;
+
+[Table("Address", Schema = "dbo")]
 public class Address : BaseEntity
 {
     public int CustomerId { get; set; }
@@ -27,6 +25,7 @@ public class AddressConfiguration : IEntityTypeConfiguration<Address>
 {
     public void Configure(EntityTypeBuilder<Address> builder)
     {
+        // BaseEntity'den gelen standart alanlar
         builder.Property(x => x.InsertDate).IsRequired(true);
         builder.Property(x => x.InsertUserId).IsRequired(true);
         builder.Property(x => x.UpdateDate).IsRequired(false);

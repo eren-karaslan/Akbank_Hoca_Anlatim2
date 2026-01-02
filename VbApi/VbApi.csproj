@@ -8,6 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vb.Base\Vb.Base.csproj" />
+    <ProjectReference Include="..\Vb.Business\Vb.Business.csproj" />
+    <ProjectReference Include="..\Vb.Data\Vb.Data.csproj" />
+    <ProjectReference Include="..\Vb.Schema\Vb.Schema.csproj" />
   </ItemGroup>
 
 </Project>

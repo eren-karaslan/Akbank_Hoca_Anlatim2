@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using Vb.Base.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vb.Data.Entity;
 
+[Table("Customer", Schema = "dbo")]
 public class Customer : BaseEntity
 {
     public string IdentityNumber { get; set; }
@@ -18,17 +20,18 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 {
     public void Configure(EntityTypeBuilder<Customer> builder)
     {
+        // BaseEntity'den gelen standart alanlar
         builder.Property(x => x.InsertDate).IsRequired(true);
         builder.Property(x => x.InsertUserId).IsRequired(true);
         builder.Property(x => x.UpdateDate).IsRequired(false);
         builder.Property(x => x.UpdateUserId).IsRequired(false);
         builder.Property(x => x.IsActive).IsRequired(true).HasDefaultValue(true);
 
+
         builder.Property(x => x.IdentityNumber).IsRequired(true).HasMaxLength(11);
         builder.Property(x => x.FirstName).IsRequired(true).HasMaxLength(50);
         builder.Property(x => x.LastName).IsRequired(true).HasMaxLength(50);
         builder.Property(x => x.CustomerNumber).IsRequired(true);
-
         builder.Property(x => x.DateOfBirth).IsRequired(true);
         builder.Property(x => x.LastActivityDate).IsRequired(true);
         builder.HasIndex(x => x.IdentityNumber).IsUnique(true);
